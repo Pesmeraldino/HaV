@@ -2,54 +2,51 @@
 
 import { useState, useEffect } from "react";
 import Icon from "@mdi/react";
-import {
-  mdiChevronLeft,
-  mdiChevronRight,
-  mdiMapMarker,
-  mdiCalendar,
-} from "@mdi/js";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
-interface Event {
+interface Slide {
   id: number;
   title: string;
+  subtitle: string;
   description: string;
-  image: string;
-  date: string;
-  location: string;
-  category: string;
 }
 
-// Dados de exemplo para os eventos em destaque
-const featuredEvents: Event[] = [
+// Slides inspiradores para direito civil, empresarial e bancário
+const heroSlides: Slide[] = [
   {
     id: 1,
-    title: "Festival de Verão 2025",
+    title: "Consultoria Jurídica Online",
+    subtitle: "para todo Brasil",
     description:
-      "O maior festival de música eletrônica da cidade com os melhores DJs nacionais e internacionais",
-    image: "bg-gradient-to-br from-primary via-secondary to-accent",
-    date: "15 de Dezembro",
-    location: "Centro de Eventos",
-    category: "Festa",
+      "Conectamos você aos melhores advogados especializados, oferecendo consultoria jurídica de qualidade em qualquer lugar do país.",
   },
   {
     id: 2,
-    title: "Noite dos Bares",
+    title: "Direito Civil",
+    subtitle: "Protegendo seus direitos fundamentais",
     description:
-      "Tour pelos melhores bares da cidade com drinks especiais e música ao vivo",
-    image: "bg-gradient-to-br from-accent via-gold to-cream",
-    date: "20 de Dezembro",
-    location: "Centro Histórico",
-    category: "Bares",
+      "Especialistas em questões familiares, sucessórias e contratuais. Defendemos seus interesses com dedicação e expertise jurídica.",
   },
   {
     id: 3,
-    title: "Gaming Convention",
+    title: "Direito Empresarial",
+    subtitle: "Impulsionando seu negócio",
     description:
-      "O maior evento geek da região com campeonatos, cosplay e lançamentos exclusivos",
-    image: "bg-gradient-to-br from-secondary via-primary to-gold",
-    date: "28 de Dezembro",
-    location: "Centro de Convenções",
-    category: "Geek",
+      "Consultoria estratégica para empresas de todos os portes. Compliance, contratos e estruturação societária com excelência.",
+  },
+  {
+    id: 4,
+    title: "Direito Bancário",
+    subtitle: "Soluções financeiras inteligentes",
+    description:
+      "Defesa em questões bancárias, renegociação de dívidas e proteção contra práticas abusivas do sistema financeiro.",
+  },
+  {
+    id: 5,
+    title: "Justiça e Ética",
+    subtitle: "Nossa missão diária",
+    description:
+      "Mais de uma década defendendo seus direitos com transparência, ética e resultados comprovados em todo o território nacional.",
   },
 ];
 
@@ -58,27 +55,40 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredEvents.length);
-    }, 5000);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % featuredEvents.length);
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
 
   const prevSlide = () => {
     setCurrentSlide(
-      (prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length
+      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
     );
   };
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {featuredEvents.map((event, index) => (
+      {/* Fundo fixo com imagem */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/assets/SAM_0753_alt.jpg')",
+          filter: "grayscale(70%) brightness(0.6) contrast(1.1)",
+        }}
+      >
+        {/* Overlay adicional para melhor legibilidade */}
+        <div className="absolute inset-0 bg-black bg-opacity-35"></div>
+      </div>
+
+      {/* Conteúdo dos slides - apenas texto se move */}
+      {heroSlides.map((slide, index) => (
         <div
-          key={event.id}
-          className={`absolute inset-0 transition-transform duration-500 ease-in-out ${
+          key={slide.id}
+          className={`absolute inset-0 transition-transform duration-700 ease-in-out ${
             index === currentSlide
               ? "translate-x-0"
               : index < currentSlide
@@ -86,38 +96,20 @@ export default function HeroCarousel() {
               : "translate-x-full"
           }`}
         >
-          <div className={`h-full w-full ${event.image} relative`}>
-            {/* Overlay escuro para melhor legibilidade */}
-            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          {/* Conteúdo do slide */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white max-w-5xl px-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight font-serif uppercase">
+                {slide.title}
+              </h1>
 
-            {/* Conteúdo do slide */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center text-white max-w-4xl px-6">
-                <div className="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium mb-4">
-                  {event.category}
-                </div>
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                  {event.title}
-                </h1>
-                <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto">
-                  {event.description}
-                </p>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-6 text-white uppercase">
+                {slide.subtitle}
+              </h2>
 
-                <div className="flex items-center justify-center gap-6 mb-8 text-lg">
-                  <div className="flex items-center gap-2">
-                    <Icon path={mdiCalendar} size={1} />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon path={mdiMapMarker} size={1} />
-                    <span>{event.location}</span>
-                  </div>
-                </div>
-
-                <button className="bg-gradient-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg">
-                  Comprar Ingresso
-                </button>
-              </div>
+              <p className="text-base md:text-lg lg:text-xl mb-10 text-white max-w-3xl mx-auto leading-relaxed">
+                {slide.description}
+              </p>
             </div>
           </div>
         </div>
@@ -126,39 +118,29 @@ export default function HeroCarousel() {
       {/* Botões de navegação */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all"
+        className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-accent-500 p-3 transition-all"
       >
         <Icon path={mdiChevronLeft} size={1.5} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all"
+        className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-accent-500 p-3 transition-all"
       >
         <Icon path={mdiChevronRight} size={1.5} />
       </button>
 
-      {/* Indicadores */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
-        {featuredEvents.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide ? "bg-white" : "bg-white bg-opacity-50"
-            }`}
-          />
-        ))}
+      {/* Título da empresa absoluto centralizado */}
+      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-accent-500 font-bold text-xl z-20 text-center uppercase">
+        Hofstatter, Ashton & Venancio Advogadas Associadas
       </div>
 
-      {/* Indicador de scroll */}
-      <div className="absolute bottom-8 right-8 text-white text-sm opacity-70 animate-bounce">
-        <div className="flex flex-col items-center gap-2">
-          <span>Role para baixo</span>
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </div>
+      {/* Botão Contate-nos absoluto centralizado */}
+      <a
+        href="/contato"
+        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-accent-500 hover:bg-accent-400 text-primary-900 px-8 py-4 font-semibold text-lg transition-all shadow-lg z-20"
+      >
+        Contate-nos
+      </a>
     </div>
   );
 }
