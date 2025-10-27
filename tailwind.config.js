@@ -29,7 +29,7 @@ module.exports = {
           200: "#ffeeac",
           300: "#ffe683",
           400: "#ffdd59",
-          500: "#ffd21f", // Amarelo principal atualizado
+          500: "#c4a62e", // Amarelo principal atualizado
           600: "#cca819",
           700: "#997e13",
           800: "#66540c",
