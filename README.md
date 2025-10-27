@@ -121,4 +121,4 @@ npm run dev
 3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
-   Implementação de uma SPA para Hofstatter Ashton &amp; Venancio Advogadas Associadas
+   Implementação de uma SPA para Hofstatter Ashton & Venancio Advocacia
