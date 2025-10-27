@@ -18,35 +18,34 @@ const heroSlides: Slide[] = [
     title: "Consultoria Jurídica Online",
     subtitle: "para todo Brasil",
     description:
-      "Conectamos você aos melhores advogados especializados, oferecendo consultoria jurídica de qualidade em qualquer lugar do país.",
+      "Conecte-se à HAV e tenha acesso à consultoria de qualidade em qualquer lugar do Brasil.",
   },
   {
     id: 2,
     title: "Direito Civil",
-    subtitle: "Protegendo seus direitos fundamentais",
+    subtitle: "Protegendo seus bens e direitos fundamentais",
     description:
-      "Especialistas em questões familiares, sucessórias e contratuais. Defendemos seus interesses com dedicação e expertise jurídica.",
+      "Conecte-se à HAV e tire suas dúvidas sobre casamento, união estável, divórcio, patrimônio, contratos, posse, propriedade e sucessões, além de oferecer os serviços de confecção de pareceres e elaboração de contratos.",
   },
   {
     id: 3,
     title: "Direito Empresarial",
-    subtitle: "Impulsionando seu negócio",
+    subtitle: "Prevenção jurídica para a segurança do seu negócio",
     description:
-      "Consultoria estratégica para empresas de todos os portes. Compliance, contratos e estruturação societária com excelência.",
+      "Contratos empresariais, consultoria e estruturação societária com excelência. Advocacia empresarial atuando na recuperação de empresas e direitos do terceiro setor, especialmente Associações sem fins lucrativos.",
   },
   {
     id: 4,
     title: "Direito Bancário",
-    subtitle: "Soluções financeiras inteligentes",
+    subtitle: "Soluções jurídicas únicas para o seu negócio",
     description:
-      "Defesa em questões bancárias, renegociação de dívidas e proteção contra práticas abusivas do sistema financeiro.",
+      "Análise e defesa em execuções bancárias, renegociação de dívidas e proteção contra práticas abusivas, com atendimento a consumidores e representação de bancos.",
   },
   {
     id: 5,
-    title: "Justiça e Ética",
-    subtitle: "Nossa missão diária",
-    description:
-      "Mais de uma década defendendo seus direitos com transparência, ética e resultados comprovados em todo o território nacional.",
+    title: "Atuação Ética",
+    subtitle: "Nosso compromisso diário ",
+    description: "Defesa jurídica aplicada com transparência e presteza.",
   },
 ];
 
@@ -131,7 +130,7 @@ export default function HeroCarousel() {
 
       {/* Título da empresa absoluto centralizado */}
       <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-accent-500 font-bold text-xl z-20 text-center uppercase">
-        Hofstatter, Ashton & Venancio Advogadas Associadas
+        Hofstatter, Ashton & Venancio Advocacia
       </div>
 
       {/* Botão Contate-nos absoluto centralizado */}

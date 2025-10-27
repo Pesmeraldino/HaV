@@ -96,7 +96,6 @@ export default function ContatoPage() {
           subject: formData.assunto,
           message: formData.mensagem,
           send_date: new Date().toLocaleDateString("pt-BR"),
-          advogada_especialidade: advogadaSelecionada.especialidadePrincipal,
         },
         "AtdZLHHxC48_lGkrg"
       );
@@ -116,7 +115,6 @@ export default function ContatoPage() {
           message: formData.mensagem,
           send_date: new Date().toLocaleDateString("pt-BR"),
           advogada_nome: advogadaSelecionada.nome,
-          advogada_especialidade: advogadaSelecionada.especialidadePrincipal,
         },
         "AtdZLHHxC48_lGkrg"
       );
@@ -153,106 +151,15 @@ export default function ContatoPage() {
           </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
             Estamos prontos para ajudá-lo com suas questões jurídicas. Agende
-            uma consulta gratuita e descubra como podemos resolver seu caso.
+            uma consulta.
           </p>
         </div>
       </section>
 
-      {/* Informações de Contato e Formulário */}
-      <section className="py-20 bg-white">
+      {/* Formulário de Contato */}
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Informações de Contato */}
-            <div>
-              <h2 className="text-3xl font-bold text-primary-800 mb-8 font-serif">
-                Informações de Contato
-              </h2>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <Icon path={mdiMapMarker} size={1} className="text-white" />
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <Icon path={mdiPhone} size={1} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary-800 mb-1">
-                      Telefones
-                    </h3>
-                    <div className="text-neutral-600">
-                      {dadosEscritorio.telefones.map((telefone, index) => (
-                        <p key={index}>{telefone}</p>
-                      ))}
-                      <p className="text-sm mt-2">
-                        <span className="font-medium">WhatsApp:</span>{" "}
-                        {dadosEscritorio.telefones[0]}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <Icon path={mdiEmail} size={1} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary-800 mb-1">
-                      E-mail
-                    </h3>
-                    <p className="text-neutral-600">
-                      {dadosEscritorio.emails.principal}
-                      <br />
-                      {dadosEscritorio.emails.comercial}
-                      <br />
-                      {dadosEscritorio.emails.suporte}
-                    </p>
-                    <div className="mt-3 text-sm text-neutral-500">
-                      <p>
-                        <strong>Advogadas:</strong>
-                      </p>
-                      {advogadas
-                        .filter((adv) => adv.id !== "equipe")
-                        .map((adv) => (
-                          <p key={adv.id}>
-                            • {adv.nome}: {adv.email}
-                          </p>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <Icon path={mdiClock} size={1} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary-800 mb-1">
-                      Horário de Atendimento
-                    </h3>
-                    <p className="text-neutral-600">
-                      {dadosEscritorio.horarioFuncionamento.semana}
-                      <br />
-                      {dadosEscritorio.horarioFuncionamento.sabado}
-                      {dadosEscritorio.horarioFuncionamento.domingo && (
-                        <>
-                          <br />
-                          {dadosEscritorio.horarioFuncionamento.domingo}
-                        </>
-                      )}
-                      <br />
-                      <span className="text-accent-600 font-medium">
-                        Atendimento de urgência 24h
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Formulário de Contato */}
             <div>
               <h2 className="text-3xl font-bold text-primary-800 mb-8 font-serif">
@@ -353,10 +260,6 @@ export default function ContatoPage() {
                                 advogadas.find(
                                   (a) => a.id === formData.advogada
                                 )?.nomeCompleto
-                              } - ${
-                                advogadas.find(
-                                  (a) => a.id === formData.advogada
-                                )?.especialidadePrincipal
                               }`
                             : "Selecione uma advogada..."}
                         </span>
@@ -397,7 +300,7 @@ export default function ContatoPage() {
                                 {advogada.nomeCompleto}
                               </div>
                               <div className="text-sm text-neutral-600">
-                                {advogada.especialidadePrincipal}
+                                {advogada.cargo}
                               </div>
                             </div>
                           ))}
@@ -431,7 +334,7 @@ export default function ContatoPage() {
                                   {advSelecionada.nome}
                                 </p>
                                 <p className="text-sm text-primary-600">
-                                  {advSelecionada.descricao}
+                                  {advSelecionada.oab}
                                 </p>
                                 <p className="text-xs text-primary-500 mt-1">
                                   📧 {advSelecionada.email}
@@ -570,7 +473,7 @@ export default function ContatoPage() {
                     className={`w-full flex items-center justify-center gap-2 px-8 py-4 font-semibold text-lg transition-all ${
                       isSubmitting
                         ? "bg-neutral-400 text-neutral-600 cursor-not-allowed"
-                        : "bg-gradient-accent text-primary-900 hover:shadow-elegant-lg hover:scale-[1.02]"
+                        : "bg-primary-900 text-white hover:bg-primary-1000 hover:shadow-lg"
                     }`}
                   >
                     {isSubmitting ? (
@@ -609,46 +512,118 @@ export default function ContatoPage() {
                 </form>
               )}
             </div>
+
+            {/* Informações de Contato */}
+            <div>
+              <h2 className="text-3xl font-bold text-primary-800 mb-8 font-serif">
+                Informações de Contato
+              </h2>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                    <Icon path={mdiPhone} size={1} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary-800 mb-1">
+                      Telefones
+                    </h3>
+                    <div className="text-neutral-600">
+                      {dadosEscritorio.telefones.map((telefone, index) => (
+                        <p key={index}>{telefone}</p>
+                      ))}
+                      <p className="text-sm mt-2">
+                        <span className="font-medium">WhatsApp:</span>{" "}
+                        <a
+                          href={dadosEscritorio.redesSociais.whatsapp}
+                          className="text-accent-600 hover:text-accent-700"
+                        >
+                          Clique aqui para conversar
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                    <Icon path={mdiEmail} size={1} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary-800 mb-1">
+                      E-mail
+                    </h3>
+                    <p className="text-neutral-600">{dadosEscritorio.email}</p>
+                    <div className="mt-3 text-sm text-neutral-500">
+                      <p>
+                        <strong>Advogadas:</strong>
+                      </p>
+                      {advogadas
+                        .filter((adv) => adv.id !== "equipe")
+                        .map((adv) => (
+                          <p key={adv.id}>
+                            • {adv.nome}: {adv.email}
+                          </p>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                    <Icon path={mdiClock} size={1} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary-800 mb-1">
+                      Horário de Atendimento
+                    </h3>
+                    <p className="text-neutral-600">
+                      {dadosEscritorio.horarioFuncionamento}
+                      <br />
+                      <span className="text-accent-600 font-medium">
+                        Atendimento de urgência 24h
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Informações Adicionais */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-20 bg-primary-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-primary flex items-center justify-center mx-auto mb-4">
                 <Icon path={mdiCheckCircle} size={1.5} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary-800 mb-2">
+              <h3 className="text-xl font-bold text-white mb-2">
                 Consulta Estratégica
               </h3>
-              <p className="text-neutral-600">
-                Avaliamos seu caso e sugerimos as melhores soluções jurídicas
+              <p className="text-neutral-200">
+                Avaliação do caso para determinar as melhores soluções
+                jurídicas.
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-primary flex items-center justify-center mx-auto mb-4">
                 <Icon path={mdiClock} size={1.5} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary-800 mb-2">
+              <h3 className="text-xl font-bold text-white mb-2">
                 Resposta Rápida
               </h3>
-              <p className="text-neutral-600">
-                Retornamos contato em até 5 dias úteis
-              </p>
+              <p className="text-neutral-200">Retorno em até 5 dias úteis.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-primary flex items-center justify-center mx-auto mb-4">
                 <Icon path={mdiPhone} size={1.5} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary-800 mb-2">
-                Atendimento 24h
+              <h3 className="text-xl font-bold text-white mb-2">
+                Atendimento 24h por telefone
               </h3>
-              <p className="text-neutral-600">
-                Disponível para urgências a qualquer momento
-              </p>
+              <p className="text-neutral-200">Disponível para urgências.</p>
             </div>
           </div>
         </div>

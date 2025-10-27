@@ -79,25 +79,19 @@ export default function AreasPage() {
                   <div className="bg-primary-50 p-8">
                     <div className="bg-white p-6 shadow-lg border border-primary-100">
                       <h4 className="text-xl font-bold text-primary-800 mb-4">
-                        Por que escolher nossa expertise em {area.title}?
+                        Por que escolher a expertise da HAV em {area.title}?
                       </h4>
                       <div className="space-y-4">
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                           <p className="text-neutral-600">
-                            Equipe especializada com vasta experiência na área
+                            Equipe especializada com experiência na área
                           </p>
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                           <p className="text-neutral-600">
                             Abordagem estratégica e personalizada para cada caso
-                          </p>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <p className="text-neutral-600">
-                            Histórico comprovado de resultados positivos
                           </p>
                         </div>
                         <div className="flex items-start gap-3">
@@ -124,7 +118,7 @@ export default function AreasPage() {
           </h2>
           <p className="text-xl text-neutral-300 mb-8">
             Nossa equipe está pronta para oferecer as melhores soluções para
-            suas questões jurídicas
+            suas questões jurídicas.
           </p>
           <div className="flex justify-center">
             <a

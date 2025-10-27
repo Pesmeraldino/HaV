@@ -6,10 +6,34 @@ import {
   mdiGavel,
   mdiCertificate,
   mdiTrophy,
+  mdiPin,
 } from "@mdi/js";
 import { advogadas } from "@/data/advogadas";
 
 export default function EquipePage() {
+  const renderDescription = (text: string) => {
+    return text.split("\n\n").map((line, index) => {
+      if (line.trim().startsWith("•")) {
+        const content = line.trim().substring(1).trim();
+        return (
+          <div key={index} className="flex items-start gap-3 mb-3">
+            <Icon
+              path={mdiPin}
+              size={0.8}
+              className="text-accent-500 mt-1 flex-shrink-0"
+            />
+            <span>{content}</span>
+          </div>
+        );
+      }
+      return (
+        <p key={index} className="mb-4">
+          {line}
+        </p>
+      );
+    });
+  };
+
   return (
     <div className="pt-20">
       {/* Header */}
@@ -19,9 +43,8 @@ export default function EquipePage() {
             Nossa <span className="text-accent-400">Equipe</span>
           </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-            Profissionais experientes e dedicados, unidos pela paixão pela
-            advocacia e pelo compromisso com a excelência no atendimento aos
-            nossos clientes.
+            Profissionais dedicadas, unidas pela paixão pela advocacia e pelo
+            compromisso com a excelência no atendimento aos clientes.
           </p>
         </div>
       </section>
@@ -67,28 +90,23 @@ export default function EquipePage() {
                             className="text-primary-600"
                           />
                         </div>
-                        <div className="text-center mb-6">
-                          <h3 className="text-xl font-bold text-white mb-2 uppercase">
-                            {membro.nomeCompleto}
-                          </h3>
-                          <p className="text-accent-200 font-semibold mb-4">
-                            {membro.cargo}
-                          </p>
-                        </div>
                         <div className="space-y-3 text-sm text-neutral-200 text-left">
                           <div className="flex justify-between">
-                            <span className="font-semibold">OAB:</span>
                             <span>{membro.oab || "Em processo"}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-semibold">Experiência:</span>
-                            <span>{membro.experiencia}</span>
+                            <span>{membro.cargo || "Em processo"}</span>
                           </div>
                           <div className="flex flex-col gap-1">
-                            <span className="font-semibold">Formação:</span>
-                            <span className="text-xs leading-tight">
-                              {Array.isArray(membro.formacao) ? membro.formacao[0] : membro.formacao}
-                            </span>
+                            {Array.isArray(membro.formacao) ? (
+                              membro.formacao.map((f, i) => (
+                                <span key={i} className="text-xs leading-tight">
+                                  {f}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="text-xs leading-tight">
+                                {membro.formacao}
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex justify-center gap-3 mt-6">
@@ -126,61 +144,17 @@ export default function EquipePage() {
                         <h3 className="text-2xl font-bold text-primary-800 mb-2 font-serif uppercase text-left">
                           {membro.nomeCompleto}
                         </h3>
-                        <p className="text-accent-600 font-semibold text-lg mb-4 text-left">
-                          {membro.cargo}
-                        </p>
-                        <p className="text-neutral-700 leading-relaxed text-lg text-left">
-                          {membro.descricaoDetalhada}
-                        </p>
+                        {membro.subtitulo && (
+                          <p className="text-accent-500 font-semibold text-lg text-left">
+                            {membro.subtitulo}
+                          </p>
+                        )}
                       </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
-                        {/* Especialidades */}
-                        <div>
-                          <h4 className="font-bold text-primary-800 mb-3 flex items-center gap-2 text-left">
-                            <Icon path={mdiGavel} size={0.8} />
-                            Especialidades
-                          </h4>
-                          <ul className="space-y-2">
-                            {membro.especialidades?.map(
-                              (esp: string, i: number) => (
-                                <li
-                                  key={i}
-                                  className="text-neutral-600 flex items-center gap-2 text-left"
-                                >
-                                  <div className="w-1.5 h-1.5 bg-accent-500 rounded-full"></div>
-                                  {esp}
-                                </li>
-                              )
-                            )}
-                          </ul>
+                      {membro.descricaoDetalhada && (
+                        <div className="text-neutral-700 leading-relaxed text-lg text-left">
+                          {renderDescription(membro.descricaoDetalhada)}
                         </div>
-
-                        {/* Conquistas */}
-                        <div>
-                          <h4 className="font-bold text-primary-800 mb-3 flex items-center gap-2 text-left">
-                            <Icon path={mdiTrophy} size={0.8} />
-                            Conquistas e Reconhecimentos
-                          </h4>
-                          <ul className="space-y-2">
-                            {membro.conquistas?.map(
-                              (conquista: string, i: number) => (
-                                <li
-                                  key={i}
-                                  className="text-neutral-600 flex items-start gap-2 text-left"
-                                >
-                                  <Icon
-                                    path={mdiCertificate}
-                                    size={0.6}
-                                    className="text-accent-500 mt-1 flex-shrink-0"
-                                  />
-                                  <span className="text-sm">{conquista}</span>
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -190,51 +164,20 @@ export default function EquipePage() {
         </div>
       </section>
 
-      {/* Estatísticas da Equipe */}
-      <section className="py-20 bg-primary-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4 font-serif">
-              Nossa Equipe em Números
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-accent-400 mb-2">-</div>
-              <div className="text-white">Advogados Especialistas</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent-400 mb-2">-</div>
-              <div className="text-white">Anos de Experiência Combinada</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent-400 mb-2">-</div>
-              <div className="text-white">Especializações</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent-400 mb-2">-</div>
-              <div className="text-white">Taxa de Sucesso</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-20 bg-primary-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-primary-800 mb-6 font-serif">
+          <h2 className="text-4xl font-bold text-white mb-6 font-serif">
             Converse Diretamente com Nossa Equipe
           </h2>
-          <p className="text-xl text-neutral-600 mb-8">
-            Escolha o especialista ideal para seu caso e agende uma consulta
-            personalizada
+          <p className="text-xl text-white mb-8">
+            Agende uma consulta personalizada.
           </p>
           <a
             href="/contato"
-            className="inline-flex items-center gap-2 bg-gradient-accent text-primary-900 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-elegant-lg transition-all hover:scale-105"
+            className="bg-accent-400 text-primary-900 px-8 py-4 font-semibold text-lg hover:bg-accent-500 transition-all hover:scale-105"
           >
-            <Icon path={mdiEmail} size={0.8} />
-            Agendar Consulta
+            Entre em Contato
           </a>
         </div>
       </section>

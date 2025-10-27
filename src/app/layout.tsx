@@ -46,8 +46,7 @@ export default function RootLayout({
                   HAV Advocacia
                 </h3>
                 <p className="text-neutral-300 text-sm leading-relaxed">
-                  Hofstatter Ashton & Venancio Advogadas soluções jurídicas
-                  inovadoras e estratégicas.
+                  Hofstatter Ashton & Venancio Advocacia
                 </p>
               </div>
               <div>

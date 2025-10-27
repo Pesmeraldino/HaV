@@ -24,7 +24,6 @@ export default function MidiasPage() {
 
   return (
     <div className="pt-20">
-      {/* Header */}
       <section className="py-20 bg-primary-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 font-serif uppercase">
@@ -32,8 +31,7 @@ export default function MidiasPage() {
           </h1>
           <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
             Acesse nosso conteúdo em diferentes plataformas: Instagram, galerias
-            de fotos, vídeos educativos e atualizações sobre direitos e
-            legislação.
+            de fotos e vídeos
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <a
@@ -44,15 +42,6 @@ export default function MidiasPage() {
             >
               <Icon path={mdiInstagram} size={0.8} />
               Instagram
-            </a>
-            <a
-              href="https://youtube.com/@havadvogadas"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-semibold hover:shadow-lg transition-all hover:scale-105"
-            >
-              <Icon path={mdiYoutube} size={0.8} />
-              YouTube
             </a>
           </div>
         </div>
@@ -66,7 +55,7 @@ export default function MidiasPage() {
               <Icon
                 path={mdiInstagram}
                 size={1.2}
-                className="inline mr-3 text-purple-600"
+                className="inline align-middle mr-4 text-purple-600"
               />
               Posts do Instagram
             </h2>
@@ -126,7 +115,7 @@ export default function MidiasPage() {
                 <Icon
                   path={mdiImageMultiple}
                   size={1.2}
-                  className="inline mr-3 text-primary-600"
+                  className="inline align-middle mr-3 text-primary-600"
                 />
                 Galeria de Fotos
               </h2>
@@ -156,79 +145,6 @@ export default function MidiasPage() {
               ))}
             </div>
           </div>
-
-          {/* Seção de Vídeos */}
-          <div>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-primary-800 font-serif uppercase mb-4">
-                <Icon
-                  path={mdiVideo}
-                  size={1.2}
-                  className="inline mr-3 text-red-600"
-                />
-                Vídeos Educativos
-              </h2>
-              <p className="text-lg text-neutral-600">
-                Conteúdo educativo sobre direitos e legislação
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Placeholder para vídeos */}
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="bg-white shadow-lg hover:shadow-xl transition-all overflow-hidden group cursor-pointer"
-                >
-                  <div className="relative aspect-video bg-gradient-to-br from-red-100 to-primary-100 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
-                    <Icon
-                      path={mdiPlay}
-                      size={3}
-                      className="text-red-600 relative z-10 group-hover:scale-110 transition-transform"
-                    />
-                    <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 text-sm">
-                      5:42
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-primary-800 mb-2 group-hover:text-primary-600 transition-colors">
-                      Direitos do Consumidor - Parte {i}
-                    </h3>
-                    <p className="text-neutral-600 text-sm leading-relaxed mb-4">
-                      Entenda seus direitos como consumidor e saiba quando
-                      buscar ajuda jurídica especializada.
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-neutral-500">
-                      <span>2 dias atrás</span>
-                      <span>1.2k visualizações</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Embed do YouTube */}
-            <div className="mt-12 text-center">
-              <h3 className="text-2xl font-bold text-primary-800 mb-6">
-                Canal no YouTube
-              </h3>
-              <div className="max-w-4xl mx-auto">
-                <div className="relative aspect-video bg-neutral-800 overflow-hidden">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0"
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -243,61 +159,16 @@ export default function MidiasPage() {
             plataformas
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/10 p-6 text-center hover:bg-white/20 transition-colors">
-              <Icon
-                path={mdiInstagram}
-                size={3}
-                className="text-purple-400 mx-auto mb-4"
-              />
-              <h3 className="text-accent-400 font-bold mb-2">Instagram</h3>
-              <p className="text-neutral-300 text-sm mb-4">
-                Posts diários com dicas jurídicas e atualizações
-              </p>
-              <a
-                href="https://instagram.com/havadvogadas"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 font-semibold"
-              >
-                @havadvogadas
-              </a>
-            </div>
-
-            <div className="bg-white/10 p-6 text-center hover:bg-white/20 transition-colors">
-              <Icon
-                path={mdiYoutube}
-                size={3}
-                className="text-red-400 mx-auto mb-4"
-              />
-              <h3 className="text-accent-400 font-bold mb-2">YouTube</h3>
-              <p className="text-neutral-300 text-sm mb-4">
-                Vídeos educativos e webinars sobre direitos
-              </p>
-              <a
-                href="https://youtube.com/@havadvogadas"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-400 hover:text-red-300 font-semibold"
-              >
-                HA&V Advogadas
-              </a>
-            </div>
-
-            <div className="bg-white/10 p-6 text-center hover:bg-white/20 transition-colors">
-              <Icon
-                path={mdiCamera}
-                size={3}
-                className="text-accent-400 mx-auto mb-4"
-              />
-              <h3 className="text-accent-400 font-bold mb-2">Galeria</h3>
-              <p className="text-neutral-300 text-sm mb-4">
-                Fotos de eventos e momentos importantes
-              </p>
-              <span className="text-accent-400 font-semibold">
-                Disponível no site
-              </span>
-            </div>
+          <div>
+            <a
+              href="https://instagram.com/havadvogadas"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 font-semibold hover:shadow-lg transition-all hover:scale-105"
+            >
+              <Icon path={mdiInstagram} size={0.8} />
+              Instagram
+            </a>
           </div>
         </div>
       </section>

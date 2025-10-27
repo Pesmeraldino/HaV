@@ -35,7 +35,7 @@ const equipeDestaque = [
   {
     id: 3,
     nome: "Dra. Beatriz Venancio",
-    imagem: "bg-gradient-to-br from-primary-700 to-accent-700",
+    imagem: "/assets/card_beatriz.jpg",
   },
 ];
 
@@ -44,19 +44,18 @@ const missaoValoresVisao = [
     icon: mdiScaleBalance,
     title: "Missão",
     description:
-      "Oferecer consultoria jurídica de excelência, acessível e personalizada para cada cliente em todo o Brasil.",
+      "Prestar serviços com eficiência,  qualidade e soluções inovadoras, com atendimento personalizado e consultoria jurídica de excelência em busca da satisfação dos clientes.",
   },
   {
     icon: mdiTrophy,
     title: "Valores",
-    description:
-      "Ética, transparência, comprometimento e inovação são os pilares que guiam nossa atuação profissional.",
+    description: "Excelência, Integridade, Ética, Respeito, Comprometimento",
   },
   {
     icon: mdiCertificate,
     title: "Visão",
     description:
-      "Ser referência nacional em consultoria jurídica online, democratizando o acesso à justiça de qualidade.",
+      "Ser referência em consultoria jurídica, com compromisso na construção de um mundo melhor, visando à preservação da democracia e dos direitos do cidadão.",
   },
 ];
 
@@ -89,7 +88,18 @@ export default function HomePage() {
             {equipeDestaque.map((membro) => (
               <div key={membro.id} className="relative group cursor-pointer">
                 <div
-                  className={`${membro.imagem} aspect-[3/4] flex items-end p-8 relative overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-105`}
+                  className={`aspect-[3/4] flex items-end p-8 relative overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-105 ${
+                    membro.imagem.startsWith("/") ? "" : membro.imagem
+                  }`}
+                  style={
+                    membro.imagem.startsWith("/")
+                      ? {
+                          backgroundImage: `url(${membro.imagem})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }
+                      : undefined
+                  }
                 >
                   {/* Overlay para melhor legibilidade do nome */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -112,9 +122,6 @@ export default function HomePage() {
             <h2 className="text-4xl font-bold text-white mb-4 font-serif uppercase">
               Nossos Princípios
             </h2>
-            <p className="text-xl text-neutral-200 max-w-3xl mx-auto">
-              Os valores que guiam nossa atuação jurídica
-            </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {missaoValoresVisao.map((item, index) => (
@@ -145,11 +152,9 @@ export default function HomePage() {
       <section className="py-20 bg-primary-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-white mb-6 font-serif uppercase">
-            Pronto para Resolver suas Questões Jurídicas?
+            Precisa entender melhor uma Questão Jurídica?
           </h2>
-          <p className="text-xl text-neutral-200 mb-8">
-            Entre em contato conosco e agende uma consulta
-          </p>
+          <p className="text-xl text-neutral-200 mb-8">Agende uma consulta.</p>
           <div className="flex justify-center">
             <a
               href="/contato"
